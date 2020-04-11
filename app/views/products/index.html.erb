@@ -1,0 +1,7 @@
+<h1>Ruby Shop</h1>
+
+<% @products.each do |product| %>
+  <%= link_to product.name, product %>
+  <%= product.description %>
+  <%= number_to_currency(product.price, :unit => "zł") %>
+<% end %>
