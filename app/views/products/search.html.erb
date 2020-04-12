@@ -1,12 +1,3 @@
-<div class='row'>
-  <% @searched_products.each do |product| %>
-    <div class='product-box col-3'>
-      <div class='product'>
-        <div class='name'><%= link_to product.name, product %></div>
-        <div class=price><%= "#{product.price} zł"%></div>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render 'products' %>
 
 <%= link_to 'Powrót', root_path %>
