@@ -1,1 +1,36 @@
 @import "bootstrap/scss/bootstrap";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color: black;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  color: #ccc;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.product {
+  height: 250px;
+  width: 250px;
+  padding: 20px;
+  margin: 30px 0px;
+  border: 1px solid black;
+}
+
+.product .price {
+  font-weight: bold;
+}
