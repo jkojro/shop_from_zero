@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>RubyLoversShop</title>
+    <script src="https://kit.fontawesome.com/ae16c2dc74.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +12,9 @@
 
   <body>
     <div class='container'>
+      <% flash.each do |key, value| %>
+        <%= content_tag :div, value, class: "flash #{key}" %>
+      <% end %>
       <%= yield %>
     </div>
   </body>

@@ -1,9 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Root page", :type => :system do
-  before do
-    driven_by(:rack_test)
-  end
+  before { driven_by(:rack_test) }
 
   describe 'goes from main page to clicked product'do
     before { 3.times { create(:product) }}

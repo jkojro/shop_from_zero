@@ -12,6 +12,8 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+input:focus, button:focus {outline:0;}
+
 a {
   display: block;
   text-decoration: none;
@@ -33,4 +35,50 @@ h1 {
 
 .product .price {
   font-weight: bold;
+}
+
+
+// SEARCH FORM
+
+
+.search {
+  width: 400px;
+  height: 40px;
+  margin: 40px auto;
+}
+
+.search input {
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 0.25px;
+  border-color: #ccc;
+}
+
+.search input#q {
+  width: 300px;
+}
+
+.search ::placeholder {
+  color: #a9a9a9;
+  font-weight: lighter;
+}
+
+.search .search_loop {
+  height: 40px;
+  width: 80px;
+  border-width: 0.25px;
+  border-color: #ccc;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: #a9a9a9;
+}
+
+.search .search_loop i {
+  color: #777;
+  font-size: 19px;
 }
