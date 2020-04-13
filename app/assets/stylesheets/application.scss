@@ -1,0 +1,84 @@
+@import "bootstrap/scss/bootstrap";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color: black;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+input:focus, button:focus {outline:0;}
+
+a {
+  display: block;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  color: #ccc;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.product {
+  height: 250px;
+  width: 250px;
+  padding: 20px;
+  margin: 30px 0px;
+  border: 1px solid black;
+}
+
+.product .price {
+  font-weight: bold;
+}
+
+
+// SEARCH FORM
+
+
+.search {
+  width: 400px;
+  height: 40px;
+  margin: 40px auto;
+}
+
+.search input {
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 0.25px;
+  border-color: #ccc;
+}
+
+.search input#q {
+  width: 300px;
+}
+
+.search ::placeholder {
+  color: #a9a9a9;
+  font-weight: lighter;
+}
+
+.search .search_loop {
+  height: 40px;
+  width: 80px;
+  border-width: 0.25px;
+  border-color: #ccc;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: #a9a9a9;
+}
+
+.search .search_loop i {
+  color: #777;
+  font-size: 19px;
+}
