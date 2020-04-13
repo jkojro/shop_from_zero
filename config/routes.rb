@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :products, only: [:index, :show]
+  resources :products, only: %i[index show]
 
   get '/search' => 'products#search'
 

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ProductsController, type: :controller do
   describe '#index' do
     let(:action) { get :index }
-    
+
     context 'responds with success' do
       it 'renders the :new view' do
         action
@@ -15,7 +17,7 @@ describe ProductsController, type: :controller do
 
   describe '#show' do
     let(:product) { create(:product) }
-    let(:action) { get :show, params: { id: product.id }}
+    let(:action) { get :show, params: { id: product.id } }
 
     it 'responds with success' do
       action
@@ -27,7 +29,7 @@ describe ProductsController, type: :controller do
   describe '#search' do
     let!(:product) { create(:product, name: 'Best product') }
     let!(:other_product) { create(:product, name: 'Other product') }
-    let(:action) { get :search, params: { q: 'best' }}
+    let(:action) { get :search, params: { q: 'best' } }
 
     it 'redirects to search page' do
       action
