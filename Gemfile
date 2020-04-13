@@ -26,5 +26,12 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
+group :test do
+  gem 'database_cleaner', '~> 1.8', '>= 1.8.4'
+  gem 'capybara', '~> 3.32', '>= 3.32.1'
+  gem 'capybara-screenshot', '~> 1.0', '>= 1.0.24'
+  gem 'selenium-webdriver'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
