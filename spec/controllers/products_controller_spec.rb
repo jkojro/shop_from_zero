@@ -2,13 +2,11 @@
 
 require 'rails_helper'
 
-describe ProductsController, type: :controller do
+describe ProductsController, type: :request do
   describe '#index' do
-    let(:action) { get :index }
-
     context 'responds with success' do
       it 'renders the :new view' do
-        action
+        get "/products"
         expect(response.status).to eq(200)
         expect(response).to render_template :index
       end
@@ -17,10 +15,9 @@ describe ProductsController, type: :controller do
 
   describe '#show' do
     let(:product) { create(:product) }
-    let(:action) { get :show, params: { id: product.id } }
 
     it 'responds with success' do
-      action
+      get "/products/#{product.id}"
       expect(response.status).to eq(200)
       expect(response).to render_template :show
     end
@@ -29,10 +26,9 @@ describe ProductsController, type: :controller do
   describe '#search' do
     let!(:product) { create(:product, name: 'Best product') }
     let!(:other_product) { create(:product, name: 'Other product') }
-    let(:action) { get :search, params: { q: 'best' } }
 
     it 'redirects to search page' do
-      action
+      get '/products/search', params: { q: 'best' }
       expect(response.status).to eq(200)
       expect(response).to render_template :search
       expect(assigns(:products)).to eq [product]

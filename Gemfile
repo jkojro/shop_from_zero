@@ -19,6 +19,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'faker'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-rails', '~> 2.5', '>= 2.5.2'
   gem 'spring'
