@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Search', type: :system do
-
   describe 'search for products by name' do
     let!(:product) { create(:product, name: 'Product') }
     let!(:wierd_name) { create(:product, name: 'Wierd name duct') }

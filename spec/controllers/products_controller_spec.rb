@@ -6,7 +6,7 @@ describe ProductsController, type: :request do
   describe '#index' do
     context 'responds with success' do
       it 'renders the :new view' do
-        get "/products"
+        get '/products'
         expect(response.status).to eq(200)
         expect(response).to render_template :index
       end
