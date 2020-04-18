@@ -1,10 +1,12 @@
 <h1>Cart</h1>
 <div class='row'>
-  <% @cart.products.each do |product| %>
+  <% @cart.products.uniq.each do |product| %>
     <div class='product-box col-3'>
       <div class='product'>
         <div class='name'><%= link_to product.name, product %></div>
         <div class=price><%= "#{product.price} zł"%></div>
+        <div class=price><%= "ilość: #{product.cart_products_count(@cart.id)}"%></div>
+        <div class=price><%= "Cena łącznie: #{product.cart_products_count(@cart.id) * product.price} zł"%></div>
       </div>
     </div>
   <% end %>
