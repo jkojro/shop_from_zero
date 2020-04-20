@@ -1,15 +1,22 @@
-<h1>Cart</h1>
-<div class='row'>
-  <% @cart.products.uniq.each do |product| %>
-    <div class='product-box col-3'>
-      <div class='product'>
-        <div class='name'><%= link_to product.name, product %></div>
-        <div class=price><%= "#{product.price} zł"%></div>
-        <div class=price><%= "ilość: #{product.cart_products_count(@cart.id)}"%></div>
-        <div class=price><%= "Cena łącznie: #{product.cart_products_count(@cart.id) * product.price} zł"%></div>
+<h1>Koszyk</h1>
+<% if @cart.products.any? %>
+  <div class='row'>
+    <div class='product-box col-12'>
+    <%= form_with model: @cart, local: true do |form| %>
+      <%= form.fields_for :products do |f| %>
+      <div class='row'>
+        <div class='name col-3'><%= link_to f.object.name, f.object %></div>
+        <div class='price col-2' ><%= "#{f.object.price} zł"%></div>
+        <div class='price col-3'><%= "Cena łącznie: #{f.object.cart_products_count(@cart.id) * f.object.price} zł"%></div>
+        <div class='col-1'><%= f.number_field :products_number, value: f.object.cart_products_count(@cart.id) %></div>
       </div>
+      <% end %>
+      <div><%= form.submit 'Updejtuj' %></div>
+    <% end %>
     </div>
-  <% end %>
-</div>
+  </div>
+
+  <%= link_to 'Wyczyść koszyk', cart_path, method: :delete, data: {confirm: "Czy na pewno chcesz wyczyścić koszyk?"} %>
+<% end %>
 
 <%= link_to 'Powrót', root_path %>
