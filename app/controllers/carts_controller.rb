@@ -2,8 +2,9 @@ class CartsController < ApplicationController
   before_action :set_cart
 
   def update
-    unless UpdateCart.new(@cart).(cart_params: cart_params).success?
-      flash["alert"] = "Coś poszło nie tak. Nie udało się zaktualizować koszyka."
+    result = UpdateCart.new(@cart).(cart_params: cart_params)
+    unless result.success?
+      flash["alert"] = result.failure
     end
 
     redirect_to @cart
