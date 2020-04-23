@@ -19,6 +19,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'faker'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop-rails', '~> 2.5', '>= 2.5.2'
   gem 'spring'
@@ -27,9 +28,10 @@ group :development do
 end
 
 group :test do
-  gem 'database_cleaner', '~> 1.8', '>= 1.8.4'
   gem 'capybara', '~> 3.32', '>= 3.32.1'
   gem 'capybara-screenshot', '~> 1.0', '>= 1.0.24'
+  gem 'database_cleaner', '~> 1.8', '>= 1.8.4'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
   gem 'selenium-webdriver'
 end
 

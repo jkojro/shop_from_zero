@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'selenium/webdriver'
@@ -7,7 +9,7 @@ Capybara::Screenshot.register_driver(:chrome) do |driver, path|
   driver.browser.save_screenshot(path)
 end
 
-Capybara.register_driver :chrome do |app|
+Capybara.register_driver :headless_chrome do |app|
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
@@ -15,4 +17,4 @@ Capybara.register_driver :chrome do |app|
   )
 end
 
-Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :headless_chrome
