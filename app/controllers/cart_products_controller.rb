@@ -1,17 +1,30 @@
 class CartProductsController < ApplicationController
+  before_action :validate_items_number
 
   def create
-    cart_item = CartProduct.create(cart_id: params[:cart_id], product_id: params[:product_id], counter: params[:products_add])
-    cart = Cart.find(params[:cart_id])
+    cart_product = CartProduct.create(cart_id: cart_product_params[:cart_id], product_id: cart_product_params[:product_id], counter: cart_product_params[:number_to_add])
 
-    redirect_to cart
+    redirect_to cart_product.cart
   end
 
   def update
-    @cart_product = CartProduct.find_by(product_id: params[:product_id], cart_id: params[:cart_id])
-    counter = @cart_product.counter + params[:products_add]
-    @cart_product.update(counter: counter)
+    cart_product = CartProduct.find(params[:id])
+    counter = cart_product.counter + cart_product_params[:number_to_add].to_i
+    cart_product.update(counter: counter)
 
-    redirect_to cart
+    redirect_to cart_product.cart
+  end
+
+  private
+
+  def cart_product_params
+    params.require(:cart_product).permit(:cart_id, :product_id, :number_to_add)
+  end
+
+  def validate_items_number
+    if cart_product_params[:number_to_add].to_i > 5
+      flash[:notice] = 'Dodałeś zbyt wiele sztuk produktu'
+      redirect_back(fallback_location: product_path(id: cart_product_params[:product_id]))
+    end
   end
 end

@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @cart_product = CartProduct.find_by(product_id: @product.id, cart_id: @cart.id)
+    @cart_product = CartProduct.where(product_id: @product.id, cart_id: @cart.id).first_or_initialize
   end
 
   def search
