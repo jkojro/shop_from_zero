@@ -6,6 +6,6 @@ class Product < ApplicationRecord
   validates_presence_of :name, :price
 
   def cart_products_count(cart_id)
-    line_items.where(cart_id: cart_id).count
+    cart_products.where(cart_id: cart_id).first.counter
   end
 end

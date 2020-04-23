@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
       if session[:cart_id]
         Cart.find(session[:cart_id])
       else
-        cart = Cart.create
+        cart = Cart.new
         session[:cart_id] = cart.id
       end
     end

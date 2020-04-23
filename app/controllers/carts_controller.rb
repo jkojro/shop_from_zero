@@ -3,9 +3,7 @@ class CartsController < ApplicationController
 
   def update
     result = UpdateCart.new(@cart).(cart_params: cart_params)
-    unless result.success?
-      flash["alert"] = result.failure
-    end
+    flash['alert'] = result.failure if result.failure?
 
     redirect_to @cart
   end
