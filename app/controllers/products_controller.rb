@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @cart_product = CartProduct.find_by(product_id: @product.id, cart_id: @cart.id)
   end
 
   def search
@@ -27,7 +28,7 @@ class ProductsController < ApplicationController
       if session[:cart_id]
         Cart.find(session[:cart_id])
       else
-        cart = Cart.new
+        cart = Cart.create
         session[:cart_id] = cart.id
       end
     end

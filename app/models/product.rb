@@ -3,6 +3,8 @@ class Product < ApplicationRecord
   has_many :cart_products, dependent: :destroy
   has_many :carts, through: :cart_products
 
+  accepts_nested_attributes_for :cart_products
+
   validates_presence_of :name, :price
 
   def cart_products_count(cart_id)
