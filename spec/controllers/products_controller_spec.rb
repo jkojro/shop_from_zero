@@ -5,33 +5,33 @@ require 'rails_helper'
 describe ProductsController, type: :request do
   describe '#index' do
     context 'responds with success' do
+      subject { get '/products' }
+
       it 'renders the :new view' do
-        get '/products'
+        subject
         expect(response.status).to eq(200)
-        expect(response).to render_template :index
       end
     end
   end
 
   describe '#show' do
     let(:product) { create(:product) }
+    subject { get "/products/#{product.id}" }
 
     it 'responds with success' do
-      get "/products/#{product.id}"
+      subject
       expect(response.status).to eq(200)
-      expect(response).to render_template :show
     end
   end
 
   describe '#search' do
     let!(:product) { create(:product, name: 'Best product') }
     let!(:other_product) { create(:product, name: 'Other product') }
+    subject { get '/products/search', params: { q: 'best' }}
 
     it 'redirects to search page' do
-      get '/products/search', params: { q: 'best' }
+      subject
       expect(response.status).to eq(200)
-      expect(response).to render_template :search
-      expect(assigns(:products)).to eq [product]
     end
   end
 end

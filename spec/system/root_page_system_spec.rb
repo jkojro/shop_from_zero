@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Root page', type: :system do
   describe 'goes from main page to clicked product' do
+    before { driven_by(:selenium_chrome_headless) }
+
     let!(:pierwszy) { create(:product, name: 'Pierwszy') }
     let!(:drugi) { create(:product, name: 'Drugi') }
     let!(:trzeci) { create(:product, name: 'Trzeci') }

@@ -4,8 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Search', type: :system do
   describe 'search for products by name' do
+    before { driven_by(:selenium_chrome_headless) }
+
     let!(:product) { create(:product, name: 'Product') }
-    let!(:wierd_name) { create(:product, name: 'Wierd name duct') }
+    let!(:wierd_name) { create(:product, name: 'Wierd name product') }
     let!(:fine_phrase) { create(:product, name: 'Fine Phrase') }
 
     it 'does nothing when search form is emty' do
@@ -13,16 +15,16 @@ RSpec.describe 'Search', type: :system do
       find('button.search_loop').click
       expect(page.current_path).to eq '/products'
       message = page.find('#q', visible: :all).native.attribute('validationMessage')
-      expect(message).to eq 'Wypełnij to pole.'
+      expect(message).to eq 'Please fill out this field.'
     end
 
     it 'finds proper products by name' do
       visit '/products'
-      fill_in 'q', with: 'uc'
+      fill_in 'q', with: 'Produc'
       find('button.search_loop').click
       expect(page.current_path).to eq '/products/search'
       expect(page).to have_text('Product')
-      expect(page).to have_text('Wierd name duct')
+      expect(page).to have_text('Wierd name product')
     end
 
     it 'puts flash notice if no products found' do
