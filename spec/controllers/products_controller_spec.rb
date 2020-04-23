@@ -8,7 +8,6 @@ describe ProductsController, type: :request do
       it 'renders the :new view' do
         get '/products'
         expect(response.status).to eq(200)
-        expect(response).to render_template :index
       end
     end
   end
@@ -19,7 +18,6 @@ describe ProductsController, type: :request do
     it 'responds with success' do
       get "/products/#{product.id}"
       expect(response.status).to eq(200)
-      expect(response).to render_template :show
     end
   end
 
@@ -30,8 +28,6 @@ describe ProductsController, type: :request do
     it 'redirects to search page' do
       get '/products/search', params: { q: 'best' }
       expect(response.status).to eq(200)
-      expect(response).to render_template :search
-      expect(assigns(:products)).to eq [product]
     end
   end
 end

@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'Search', type: :system do
   describe 'search for products by name' do
+    before { driven_by(:selenium_chrome_headless) }
+
     let!(:product) { create(:product, name: 'Product') }
     let!(:wierd_name) { create(:product, name: 'Wierd name product') }
     let!(:fine_phrase) { create(:product, name: 'Fine Phrase') }
@@ -13,7 +15,7 @@ RSpec.describe 'Search', type: :system do
       find('button.search_loop').click
       expect(page.current_path).to eq '/products'
       message = page.find('#q', visible: :all).native.attribute('validationMessage')
-      expect(message).to eq 'Wypełnij to pole.'
+      expect(message).to eq 'Please fill out this field.'
     end
 
     it 'finds proper products by name' do

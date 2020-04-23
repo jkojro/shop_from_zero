@@ -10,7 +10,6 @@ if Rails.env.production?
 end
 require 'rspec/rails'
 
-require 'support/capybara'
 require 'capybara-screenshot/rspec'
 require 'support/database_cleaner'
 # Add additional requires below this line. Rails is not loaded until this point!
