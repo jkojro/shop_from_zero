@@ -2,6 +2,6 @@
 
 class SearchProduct
   def call(phrase)
-     Product.search_by_name(phrase)
+    Product.search_by_name(phrase)
   end
 end

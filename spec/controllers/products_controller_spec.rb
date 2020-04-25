@@ -27,7 +27,7 @@ describe ProductsController, type: :request do
   describe '#search' do
     let!(:product) { create(:product, name: 'Best product') }
     let!(:other_product) { create(:product, name: 'Other product') }
-    subject { get '/products/search', params: { q: 'best' }}
+    subject { get '/products/search', params: { q: 'best' } }
 
     it 'redirects to search page' do
       subject

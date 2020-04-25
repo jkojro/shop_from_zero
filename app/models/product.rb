@@ -10,7 +10,7 @@ class Product < ApplicationRecord
 
   validates_presence_of :name, :price
 
-  pg_search_scope :search_by_name, against: :name, using: { dmetaphone: {}, trigram: {}, tsearch: { prefix: true, any_word: true }}
+  pg_search_scope :search_by_name, against: :name, using: { dmetaphone: {}, trigram: {}, tsearch: { prefix: true, any_word: true } }
 
   def cart_products_count(cart_id)
     cart_products.where(cart_id: cart_id).first.counter

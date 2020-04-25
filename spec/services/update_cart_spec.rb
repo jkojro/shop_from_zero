@@ -8,10 +8,10 @@ describe UpdateCart, type: :service do
     subject { UpdateCart.new(cart_product.cart).call(params) }
 
     context 'number in 1..10' do
-      let(:params) {{ cart_params: { products_attributes: { '0': {id: cart_product.product.id, products_number: 6 }}}}}
+      let(:params) { { cart_params: { products_attributes: { '0': { id: cart_product.product.id, products_number: 6 } } } } }
 
       it 'returns success' do
-        expect(subject.value!).to eq "success"
+        expect(subject.value!).to eq 'success'
       end
 
       it 'updates items number' do
@@ -20,10 +20,10 @@ describe UpdateCart, type: :service do
     end
 
     context 'number is 0' do
-      let(:params) {{ cart_params: { products_attributes: { '0': {id: cart_product.product.id, products_number: 0 }}}}}
+      let(:params) { { cart_params: { products_attributes: { '0': { id: cart_product.product.id, products_number: 0 } } } } }
 
       it 'return success' do
-        expect(subject.value!).to eq "success"
+        expect(subject.value!).to eq 'success'
       end
 
       it 'deletes cart_product' do
@@ -33,20 +33,20 @@ describe UpdateCart, type: :service do
     end
 
     context 'number is negative' do
-      let(:params) {{ cart_params: { products_attributes: { '0': {id: cart_product.product.id, products_number: -1 }}}}}
+      let(:params) { { cart_params: { products_attributes: { '0': { id: cart_product.product.id, products_number: -1 } } } } }
 
-        it 'return success' do
-          expect(subject.value!).to eq "success"
-        end
+      it 'return success' do
+        expect(subject.value!).to eq 'success'
+      end
 
-        it 'deletes cart_product' do
-          cart_product
-          expect { subject }.to change { CartProduct.all.count }.from(1).to(0)
-        end
+      it 'deletes cart_product' do
+        cart_product
+        expect { subject }.to change { CartProduct.all.count }.from(1).to(0)
+      end
     end
 
     context 'number is over 10' do
-      let(:params) {{ cart_params: { products_attributes: { '0': {id: cart_product.product.id, products_number: 11 }}}}}
+      let(:params) { { cart_params: { products_attributes: { '0': { id: cart_product.product.id, products_number: 11 } } } } }
 
       it 'return :too_many_products' do
         expect(subject.failure).to eq :too_many_items

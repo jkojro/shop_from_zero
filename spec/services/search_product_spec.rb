@@ -7,7 +7,7 @@ describe SearchProduct, type: :service do
     let!(:product) { create(:product, name: 'Product') }
     let!(:wierd_name) { create(:product, name: 'Wierd name') }
     let!(:fine_phrase) { create(:product, name: 'Fine Phrase') }
-    let(:search_phrase) { 'Product'}
+    let(:search_phrase) { 'Product' }
 
     subject { SearchProduct.new.call(search_phrase) }
 
@@ -16,7 +16,7 @@ describe SearchProduct, type: :service do
     end
 
     context 'case insensitive search' do
-      let(:search_phrase) { 'NAME'}
+      let(:search_phrase) { 'NAME' }
 
       it 'has case insensitive search' do
         expect(subject).to eq [wierd_name]

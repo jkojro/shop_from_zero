@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropTableLineItems < ActiveRecord::Migration[6.0]
   def change
     drop_table :line_items

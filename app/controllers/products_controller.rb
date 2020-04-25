@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   private
 
   def set_cart
-    @cart ||=  begin
+    @cart ||= begin
       if session[:cart_id]
         Cart.find(session[:cart_id])
       else

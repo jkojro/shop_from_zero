@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CartProductsController < ApplicationController
   before_action :validate_items_number
 

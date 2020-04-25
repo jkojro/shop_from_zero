@@ -23,8 +23,8 @@ RSpec.describe 'cart', type: :system do
       click_button 'Dodaj do koszyka'
       expect(page.current_path).to eq "/carts/#{cart.id}"
       expect(page).to have_text('Pierwszy')
-      expect(page).to have_text("1.11 zł")
-      expect(page).to have_text("Cena łącznie: 4.44 zł")
+      expect(page).to have_text('1.11 zł')
+      expect(page).to have_text('Cena łącznie: 4.44 zł')
 
       fill_in 'cart_products_attributes_0_products_number', with: 11
       click_button 'Updejtuj'
@@ -32,11 +32,11 @@ RSpec.describe 'cart', type: :system do
 
       fill_in 'cart_products_attributes_0_products_number', with: 5
       click_button 'Updejtuj'
-      expect(page).to have_text("Cena łącznie: 5.55 zł")
+      expect(page).to have_text('Cena łącznie: 5.55 zł')
 
       fill_in 'cart_products_attributes_0_products_number', with: 2
       click_button 'Updejtuj'
-      expect(page).to have_text("Cena łącznie: 2.22 zł")
+      expect(page).to have_text('Cena łącznie: 2.22 zł')
 
       page.accept_confirm do
         click_link 'Wyczyść koszyk'
