@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe SearchProduct, type: :service do
-  describe '#perform' do
+  describe '#call' do
     let!(:product) { create(:product, name: 'Product') }
     let!(:wierd_name) { create(:product, name: 'Wierd name') }
     let!(:fine_phrase) { create(:product, name: 'Fine Phrase') }

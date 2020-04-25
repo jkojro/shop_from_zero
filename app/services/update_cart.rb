@@ -16,7 +16,8 @@ class UpdateCart
 
           item = CartProduct.where(cart_id: @cart.id, product_id: product.id).first
           new_counter = item.counter + difference
-          item.update(counter: new_counter)
+
+          update_item(item, new_counter)
         end
       end
       Success('success')
@@ -40,6 +41,14 @@ class UpdateCart
       Success(product)
     else
       Failure(:product_not_found)
+    end
+  end
+
+  def update_item(item, counter)
+    if counter <= 0
+      item.destroy
+    else
+      item.update(counter: counter)
     end
   end
 end
