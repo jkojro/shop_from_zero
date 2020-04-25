@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :cart_product do
-    produtc { nil }
-    cart { nil }
+    product
+    cart
+    counter { 3 }
   end
 end
