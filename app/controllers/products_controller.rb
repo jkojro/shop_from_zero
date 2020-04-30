@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :set_cart, only: :show
+  before_action :set_cart, only: [:index, :show]
 
   def index
     @products = Product.all
   end
 
   def show
+    @cart = Cart.find(session[:cart_id])
     @product = Product.find(params[:id])
     @cart_product = CartProduct.where(product_id: @product.id, cart_id: @cart.id).first_or_initialize
   end
@@ -24,12 +25,22 @@ class ProductsController < ApplicationController
 
   def set_cart
     @cart ||= begin
-      if session[:cart_id]
-        Cart.find(session[:cart_id])
+      if user_signed_in?
+        if user_session[:cart_id]
+          Cart.find(session[:cart_id])
+        else
+          cart = Cart.create
+          user_session[:cart_id] = cart.id
+          cart
+        end
       else
-        cart = Cart.create
-        session[:cart_id] = cart.id
-        cart
+        if session[:cart_id]
+          Cart.find(session[:cart_id])
+        else
+          cart = Cart.create
+          session[:cart_id] = cart.id
+          cart
+        end
       end
     end
   end

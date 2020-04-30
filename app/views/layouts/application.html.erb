@@ -11,6 +11,19 @@
   </head>
 
   <body>
+    <section class="navbar">
+      <%= link_to "Ruby Shop", root_path, class: "navbar-brand" %>
+      <div class="navbar-elements">
+        <ul class="navbar-right">
+          <% if user_signed_in? %>
+            <li><%= link_to "Wyloguj", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Zarejestruj", new_user_registration_path %></li>
+            <li><%= link_to "Zaloguj", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </section>
     <div class='container'>
       <% flash.each do |key, value| %>
         <%= content_tag :div, value, class: "flash #{key}" %>
