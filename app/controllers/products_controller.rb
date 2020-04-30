@@ -25,14 +25,7 @@ class ProductsController < ApplicationController
   def set_cart
     @cart ||= begin
       if user_signed_in?
-        if session[:user_session] && session[:user_session]["cart_id"]
-          Cart.find(session[:user_session]["cart_id"])
-        else
-          cart = Cart.create
-          user_session[:cart_id] = cart.id
-          session[:user_session] = user_session
-          cart
-        end
+        Cart.where(user_id: current_user.id).first_or_create
       else
         if session[:cart_id]
           Cart.find(session[:cart_id])
