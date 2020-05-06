@@ -4,7 +4,11 @@ class CartProductsController < ApplicationController
   before_action :validate_items_number
 
   def create
-    cart_product = CartProduct.create(cart_id: cart_product_params[:cart_id], product_id: cart_product_params[:product_id], counter: cart_product_params[:number_to_add])
+    cart_product = CartProduct.create(
+      cart_id: cart_product_params[:cart_id],
+      product_id: cart_product_params[:product_id],
+      counter: cart_product_params[:number_to_add]
+    )
 
     redirect_to cart_product.cart
   end
