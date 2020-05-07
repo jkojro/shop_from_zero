@@ -15,10 +15,14 @@ class CartProductsController < ApplicationController
 
   def update
     cart_product = CartProduct.find(params[:id])
-    counter = cart_product.counter + cart_product_params[:number_to_add].to_i
-    cart_product.update(counter: counter)
-
-    redirect_to cart_product.cart
+    result = UpdateCartProductCounter.new(cart_product).call(cart_product_params)
+    if result.success?
+      flash[:notice] = result.success
+      redirect_to cart_product.cart
+    else
+      flash[:notice] = result.failure
+      redirect_back(fallback_location: product_path(id: cart_product_params[:product_id]))
+    end
   end
 
   private
