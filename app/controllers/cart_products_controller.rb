@@ -24,12 +24,15 @@ class CartProductsController < ApplicationController
   private
 
   def cart_product_params
-    params.require(:cart_product).permit(:cart_id, :product_id, :number_to_add)
+    params.require(:cart_product).permit(:cart_id, :product_id, :number_to_add).to_h
   end
 
   def validate_items_number
-    if cart_product_params[:number_to_add].to_i > 5
-      flash[:notice] = 'Dodałeś zbyt wiele sztuk produktu'
+    result = Validators::CartProductValidator.new.call(cart_product_params)
+
+    if result.failure?
+      flash[:notice] = result.errors.to_h.map {|_,v| v.first }.join
+
       redirect_back(fallback_location: product_path(id: cart_product_params[:product_id]))
     end
   end

@@ -16,7 +16,7 @@ describe '/cart_products', type: :request do
 
   describe '#update' do
     let(:cart_product) { create(:cart_product) }
-    subject { patch "/cart_products/#{cart_product.id}", params: { cart_product: { number_to_add: 2 } } }
+    subject { patch "/cart_products/#{cart_product.id}", params: { cart_product: { number_to_add: 2, cart_id: 1, product_id: 1 } } }
 
     it 'updates cart_product and redirects to cart' do
       subject
