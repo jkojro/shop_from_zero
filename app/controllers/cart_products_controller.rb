@@ -35,7 +35,7 @@ class CartProductsController < ApplicationController
     result = Validators::CartProductValidator.new.call(cart_product_params)
 
     if result.failure?
-      flash[:notice] = result.errors.to_h.map {|_,v| v.first }.join
+      flash[:notice] = result.errors.to_h.map { |_, v| v.first }.join
 
       redirect_back(fallback_location: product_path(id: cart_product_params[:product_id]))
     end

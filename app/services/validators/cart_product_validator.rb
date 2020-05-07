@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Validators
   class CartProductValidator < Dry::Validation::Contract
     params do
@@ -7,7 +9,9 @@ module Validators
     end
 
     rule(:number_to_add) do
-      key.failure('Dodałeś zbyt wiele sztuk produktu') if values[:number_to_add] > 5
+      if values[:number_to_add] > 5
+        key.failure('Dodałeś zbyt wiele sztuk produktu')
+      end
     end
   end
 end

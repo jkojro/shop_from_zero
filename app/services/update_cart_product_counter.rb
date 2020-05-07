@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateCartProductCounter
   include Dry::Monads[:result]
 
