@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-  before_action :set_cart
 
   def update
+    binding.pry
     result = UpdateCart.new(@cart).call(cart_params: cart_params)
     flash['alert'] = result.failure if result.failure?
 
@@ -20,9 +20,6 @@ class CartsController < ApplicationController
 
   private
 
-  def set_cart
-    @cart ||= Cart.find(params[:id])
-  end
 
   def cart_params
     params.require(:cart).permit(:product_id, :products_add, products_attributes: %i[id products_number])

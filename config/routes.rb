@@ -2,7 +2,8 @@
 
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :sessions => "sessions" }
-  resources :carts, only: %i[update show destroy]
+  get :cart, to: 'carts#show'
+  resources :carts, only: %i[update destroy]
   resources :cart_products, only: %i[create update destroy]
 
   resources :products, only: %i[index show] do

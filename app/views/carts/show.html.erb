@@ -1,18 +1,17 @@
-<h1>Koszyk</h1>
-<% if @cart.products.any? %>
+<% if shopping_cart.items.any?  %>
   <div class='row'>
     <div class='product-box col-12'>
-    <%= form_with model: @cart, local: true do |form| %>
-      <%= form.fields_for :products do |f| %>
-      <div class='row'>
-        <div class='name col-3'><%= link_to f.object.name, f.object %></div>
-        <div class='price col-2' ><%= "#{f.object.price} zł"%></div>
-        <div class='price col-3'><%= "Cena łącznie: #{f.object.cart_products_count(@cart.id) * f.object.price} zł"%></div>
-        <div class='col-1'><%= f.number_field :products_number, value: f.object.cart_products_count(@cart.id) %></div>
-      </div>
+      <%= form_with url: cart_path, local: true do |form| %>
+        <% shopping_cart.items.each do |item| %>
+          <div class='row'>
+            <div class='name col-3'><%= item.product.name %></div>
+            <div class='price col-2' ><%= "#{item.product.price} zł"%></div>
+            <div class='price col-3'><%= "Cena łącznie: #{item.quantity * item.product.price} zł"%></div>
+            <div class='col-1'><%= form.number_field :products_number, value: item.quantity %></div>
+          </div>
+        <% end %>
+        <div><%= form.submit 'Updejtuj' %></div>
       <% end %>
-      <div><%= form.submit 'Updejtuj' %></div>
-    <% end %>
     </div>
   </div>
 
