@@ -10,7 +10,7 @@ RSpec.describe 'Root page', type: :system do
     let!(:drugi) { create(:product, name: 'Drugi') }
     let!(:trzeci) { create(:product, name: 'Trzeci') }
 
-    it 'displays product name' do
+    scenario 'displays product name' do
       visit '/products'
       expect(page).to have_text('Pierwszy')
       expect(page).to have_text('Drugi')

@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'cart', type: :system do
   describe 'add, update and clear cart' do
-    before { driven_by(:selenium_chrome_headless) }
+    setup { driven_by(:selenium_chrome_headless) }
     before { allow_any_instance_of(ProductsController).to receive(:session).and_return({ cart_id: cart.id }) }
 
     let!(:product) { create(:product, name: 'Pierwszy', price: 1.11) }
     let!(:cart) { create(:cart) }
 
-    it 'displays product name' do
+    scenario 'displays product name' do
       visit '/products'
       click_link 'Pierwszy'
       expect(page.current_path).to eq "/products/#{product.id}"

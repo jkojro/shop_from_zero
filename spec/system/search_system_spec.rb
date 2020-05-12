@@ -10,7 +10,7 @@ RSpec.describe 'Search', type: :system do
     let!(:wierd_name) { create(:product, name: 'Wierd name product') }
     let!(:fine_phrase) { create(:product, name: 'Fine Phrase') }
 
-    it 'does nothing when search form is emty' do
+    scenario 'does nothing when search form is emty' do
       visit '/products'
       find('button.search_loop').click
       expect(page.current_path).to eq '/products'
@@ -18,7 +18,7 @@ RSpec.describe 'Search', type: :system do
       expect(message).to eq 'Please fill out this field.'
     end
 
-    it 'finds proper products by name' do
+    scenario 'finds proper products by name' do
       visit '/products'
       fill_in 'q', with: 'Produc'
       find('button.search_loop').click
@@ -27,7 +27,7 @@ RSpec.describe 'Search', type: :system do
       expect(page).to have_text('Wierd name product')
     end
 
-    it 'puts flash notice if no products found' do
+    scenario 'puts flash notice if no products found' do
       visit '/products'
       fill_in 'q', with: 'other'
       find('button.search_loop').click
