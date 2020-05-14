@@ -13,6 +13,14 @@ class ShoppingCart
     ShoppingCart::AddItem.new(self).call(product_id: product_id, quantity: quantity)
   end
 
+  def update_quantities(params)
+    UpdateQuantities.new(self).call(params)
+  end
+
+  def clear
+    store.clear
+  end
+
   def find_item(product_id)
     items.find { |item| item.product_id == product_id }
   end

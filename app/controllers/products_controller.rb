@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  # before_action :set_cart, only: [:index, :show]
 
   def index
     @products = Product.all
@@ -9,7 +8,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    # @cart_product = CartProduct.where(product_id: @product.id, cart_id: @cart.id).first_or_initialize
   end
 
   def search
@@ -19,22 +17,4 @@ class ProductsController < ApplicationController
       redirect_back(fallback_location: products_path) unless @products.any?
     end
   end
-
-  private
-
-  # def set_cart
-  #   @cart ||= begin
-  #     if user_signed_in?
-  #       Cart.where(user_id: current_user.id).first_or_create
-  #     else
-  #       if session[:cart_id]
-  #         Cart.find(session[:cart_id])
-  #       else
-  #         cart = Cart.create
-  #         session[:cart_id] = cart.id
-  #         cart
-  #       end
-  #     end
-  #   end
-  # end
 end
