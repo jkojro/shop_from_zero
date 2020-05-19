@@ -20,6 +20,10 @@ class ShoppingCart
         quantity <= 5 && quantity >= 0
       end
 
+      def serialize
+        { product_id => quantity }
+      end
+
       private
 
       attr_writer :quantity

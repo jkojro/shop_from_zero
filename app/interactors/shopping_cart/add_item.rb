@@ -1,5 +1,6 @@
 class ShoppingCart
   class AddItem
+    include Dry::Monads[:result]
 
     def initialize(cart)
       @cart = cart
@@ -12,8 +13,9 @@ class ShoppingCart
 
       if cart_item.valid?
         cart.store[product_id] = cart_item.quantity
+        Success(cart)
       else
-        'Invalid quantity'
+        Failure('Invalid quantity')
       end
     end
 

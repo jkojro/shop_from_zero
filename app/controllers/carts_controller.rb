@@ -3,7 +3,12 @@
 class CartsController < ApplicationController
 
   def update
-    shopping_cart.update_quantities(cart_params)
+    if cart_params_contract.success?
+      shopping_cart.update_quantities(cart_params_contract)
+      flash[:notice] = 'Cart updated'
+    else
+      flash[:notice] = cart_params_contract.errors.to_h.map { |_, v| v.first }.join
+    end
 
     redirect_to cart_path
   end
@@ -18,7 +23,7 @@ class CartsController < ApplicationController
 
   private
 
-  def cart_params
-    params.permit(items: {})
+  def cart_params_contract
+    result = ShoppingCart::UpdateCartContract.new.call(params.permit(items: {}).to_h)
   end
 end

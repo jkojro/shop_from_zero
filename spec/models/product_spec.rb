@@ -25,14 +25,14 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  describe 'cart_products_count' do
-    let(:product) { create(:product) }
-    let(:cart) { create(:cart) }
-    let!(:cart_product) { create(:cart_product, product: product, cart: cart, counter: 5) }
-    let!(:_othercart_product) { create(:cart_product, counter: 3) }
-
-    it 'access cart_product counter for given product and cart' do
-      expect(product.cart_products_count(cart)).to eq 5
-    end
-  end
+  # describe 'cart_products_count' do
+  #   let(:product) { create(:product) }
+  #   let(:cart) { create(:cart) }
+  #   let!(:cart_product) { create(:cart_product, product: product, cart: cart, counter: 5) }
+  #   let!(:_othercart_product) { create(:cart_product, counter: 3) }
+  #
+  #   it 'access cart_product counter for given product and cart' do
+  #     expect(product.cart_products_count(cart)).to eq 5
+  #   end
+  # end
 end
