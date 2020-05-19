@@ -18,7 +18,7 @@ class CartsController < ApplicationController
   def destroy
     shopping_cart.clear
 
-    redirect_back(fallback_location: @cart)
+    redirect_to root_path
   end
 
   private
