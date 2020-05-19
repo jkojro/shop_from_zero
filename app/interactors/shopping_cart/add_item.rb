@@ -12,7 +12,7 @@ class ShoppingCart
       cart_item.update_quantity(quantity)
 
       if cart_item.valid?
-        cart.store[product_id] = cart_item.quantity
+        cart.store.add_item(cart_item)
         Success(cart)
       else
         Failure('Invalid quantity')

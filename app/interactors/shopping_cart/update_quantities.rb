@@ -13,8 +13,7 @@ class ShoppingCart
       end
 
       if items.map(&:valid?).all? && items.count <= 10
-        cart.store.clear
-        cart.store.merge!(items.map(&:serialize).inject(:merge!))
+        cart.store.update_items(items)
         Success(cart)
       else
         Failure('Invalid quantiti')
