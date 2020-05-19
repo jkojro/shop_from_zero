@@ -8,7 +8,7 @@ class ShoppingCart
 
   def add_item(product_id:, quantity:)
     # lepiej przekazać self czy store?
-    ShoppingCart::AddItem.new(self).call(product_id: product_id, quantity: quantity)
+    AddItem.new(self).call(product_id: product_id, quantity: quantity)
   end
 
   def update_quantities(params)
