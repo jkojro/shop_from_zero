@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   patch :cart, to: 'carts#update'
   delete :cart, to: 'carts#destroy'
 
+  resources :cart_products, only: :create
+
   resources :products, only: %i[index show] do
     get :search, on: :collection
   end
