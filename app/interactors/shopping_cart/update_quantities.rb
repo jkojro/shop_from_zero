@@ -3,8 +3,8 @@ class ShoppingCart
     include Dry::Monads[:result]
     ITEMS_KEY = :items
 
-    def initialize(cart)
-      @cart = cart
+    def initialize(store)
+      @store = store
     end
 
     def call(params)
@@ -13,8 +13,8 @@ class ShoppingCart
       end
 
       if items.map(&:valid?).all? && items.count <= 10
-        cart.store.update_items(items)
-        Success(cart)
+        items.each { |item| store.add_item(item) }
+        Success('Cart updated')
       else
         Failure('Invalid quantiti')
       end
@@ -22,6 +22,6 @@ class ShoppingCart
 
     private
 
-    attr_reader :cart
+    attr_reader :store
   end
 end

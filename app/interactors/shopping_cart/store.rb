@@ -13,10 +13,6 @@ class ShoppingCart
       content[cart_item.product_id] = cart_item.quantity
     end
 
-    def update_items(items)
-      content.merge!(items.map(&:serialize).inject(:merge))
-    end
-
     def clear
       content.clear
     end

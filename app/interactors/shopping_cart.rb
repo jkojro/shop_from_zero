@@ -7,12 +7,11 @@ class ShoppingCart
   end
 
   def add_item(product_id:, quantity:)
-    # lepiej przekazać self czy store?
     AddItem.new(self).call(product_id: product_id, quantity: quantity)
   end
 
   def update_quantities(params)
-    UpdateQuantities.new(self).call(params)
+    UpdateQuantities.new(store).call(params)
   end
 
   def clear
@@ -24,10 +23,8 @@ class ShoppingCart
   end
 
   def items
-    @_items ||= begin
-      store.content.map do |product_id, quantity|
-        ShoppingCart::Entities::CartItem.new(product_id: product_id, quantity: quantity)
-      end
+    store.content.map do |product_id, quantity|
+      ShoppingCart::Entities::CartItem.new(product_id: product_id, quantity: quantity)
     end
   end
 end

@@ -15,6 +15,10 @@ RSpec.describe ShoppingCart do
 
   describe '#add_item' do
     let(:product) { create(:product) }
+    let(:add_item_service) { instance_double(ShoppingCart::AddItem) }
+
+    efore { allow(ShoppingCart::AddItem).to receive(:new).and_return(add_item_service) }
+
     it 'calls ShoppingCart::AddItem service with parameters' do
       expect_any_instance_of(ShoppingCart::AddItem).to receive(:call).with(product_id: product.id, quantity: 2)
       subject.add_item(product_id: product.id, quantity: 2)
