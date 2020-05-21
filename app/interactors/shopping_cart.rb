@@ -1,5 +1,6 @@
-class ShoppingCart
+# frozen_string_literal: true
 
+class ShoppingCart
   attr_reader :store
 
   def initialize(session)

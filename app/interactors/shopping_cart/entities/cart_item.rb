@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class ShoppingCart
   module Entities
     class CartItem
       attr_reader :quantity, :product_id
 
-      def initialize(product_id:product_id, quantity:0)
+      def initialize(product_id: product_id, quantity: 0)
         @quantity = quantity.to_i
         @product_id = product_id
       end

@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe ShoppingCart::UpdateQuantities do
-
   let(:store) { ShoppingCart::Store.new({}) }
   subject { described_class.new(store) }
 
@@ -17,8 +16,10 @@ RSpec.describe ShoppingCart::UpdateQuantities do
     end
 
     context 'invlid number of products' do
-      let(:params) { { items: { 1 => 2, 2 => 2, 3 => 2, 4 => 2, 5 => 2,
-        6 => 2, 7 => 2, 8 => 2, 9 => 2, 10 => 2, 11 => 2, } } }
+      let(:params) do
+        { items: { 1 => 2, 2 => 2, 3 => 2, 4 => 2, 5 => 2,
+                   6 => 2, 7 => 2, 8 => 2, 9 => 2, 10 => 2, 11 => 2 } }
+      end
 
       it 'add quantitie to existing item' do
         subject.call(params)

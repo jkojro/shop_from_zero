@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShoppingCart
   class UpdateCartContract < Dry::Validation::Contract
     params do
@@ -5,7 +7,9 @@ class ShoppingCart
     end
 
     rule(:items) do
-      key.failure('Invalid quantity') if value.select { |k,v| v.to_i > 5 }.any?
+      if value.select { |_k, v| v.to_i > 5 }.any?
+        key.failure('Invalid quantity')
+      end
     end
   end
 end

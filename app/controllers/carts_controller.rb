@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-
   def update
     if cart_params_contract.success?
       shopping_cart.update_quantities(cart_params_contract)

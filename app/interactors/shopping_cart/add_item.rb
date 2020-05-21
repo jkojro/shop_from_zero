@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShoppingCart
   class AddItem
     include Dry::Monads[:result]

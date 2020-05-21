@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 describe '/cart_products', type: :request do
-
   describe '#create' do
     subject { post '/cart_products', params: { cart_product: { product_id: 1, number_to_add: 2 } } }
 

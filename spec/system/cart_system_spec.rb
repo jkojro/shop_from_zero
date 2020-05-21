@@ -19,7 +19,7 @@ RSpec.describe 'cart', type: :system do
 
       fill_in 'number_to_add', with: 4
       click_button 'Dodaj do koszyka'
-      expect(page.current_path).to eq "/cart"
+      expect(page.current_path).to eq '/cart'
       expect(page).to have_text('Pierwszy')
       expect(page).to have_text('1.11 zł')
       expect(page).to have_text('Cena łącznie: 4.44 zł')

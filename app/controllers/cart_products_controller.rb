@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CartProductsController < ApplicationController
-
   def create
     result = shopping_cart.add_item(
       product_id: params[:product_id],

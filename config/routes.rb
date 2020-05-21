@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :sessions => "sessions" }
+  devise_for :users, controllers: { sessions: 'sessions' }
   get :cart, to: 'carts#show'
   patch :cart, to: 'carts#update'
   delete :cart, to: 'carts#destroy'

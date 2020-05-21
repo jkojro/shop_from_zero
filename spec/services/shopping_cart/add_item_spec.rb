@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe ShoppingCart::AddItem do
-
   let(:cart) { ShoppingCart.new(session) }
   subject { described_class.new(cart) }
 
@@ -31,7 +30,7 @@ RSpec.describe ShoppingCart::AddItem do
 
       it 'does not add items' do
         subject.call(product_id: 1, quantity: 4)
-        expect{subject.call(product_id: 1, quantity: 4)}.to_not change{ cart.store }
+        expect { subject.call(product_id: 1, quantity: 4) }.to_not change { cart.store }
       end
 
       it 'returns failure message' do
