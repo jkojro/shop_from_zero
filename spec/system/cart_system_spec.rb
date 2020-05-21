@@ -39,7 +39,7 @@ RSpec.describe 'cart', type: :system do
       page.accept_confirm do
         click_link 'Wyczyść koszyk'
       end
-      expect(page).not_to have_text('Pierwszy')
+      expect(page).not_to have_text('Cena łącznie: 2.22 zł')
     end
   end
 end
