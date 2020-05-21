@@ -24,6 +24,6 @@ class CartsController < ApplicationController
   private
 
   def cart_params_contract
-    result = ShoppingCart::UpdateCartContract.new.call(params.permit(items: {}).to_h)
+    result = ShoppingCart::UpdateCartContract.new.call(request.parameters.deep_symbolize_keys)
   end
 end
