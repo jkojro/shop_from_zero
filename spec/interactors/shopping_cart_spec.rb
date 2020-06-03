@@ -6,7 +6,7 @@ RSpec.describe ShoppingCart do
   let(:session) { {} }
   subject { described_class.new(session) }
 
-  describe '#initialize' do
+  describe '#new' do
     it 'initialize store with session' do
       expect(ShoppingCart::Store).to receive(:new).with(session)
       subject
