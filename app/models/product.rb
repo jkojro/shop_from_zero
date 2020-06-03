@@ -4,7 +4,6 @@ class Product < ApplicationRecord
   include PgSearch::Model
 
   has_many :cart_products, dependent: :destroy
-  has_many :carts, through: :cart_products
 
   accepts_nested_attributes_for :cart_products
 

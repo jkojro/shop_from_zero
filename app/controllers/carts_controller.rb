@@ -1,30 +1,28 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-  before_action :set_cart
-
   def update
-    result = UpdateCart.new(@cart).call(cart_params: cart_params)
-    flash['alert'] = result.failure if result.failure?
+    if cart_params_contract.success?
+      shopping_cart.update_quantities(cart_params_contract)
+      flash[:notice] = 'Cart updated'
+    else
+      flash[:notice] = cart_params_contract.errors.to_h.map { |_, v| v.first }.join
+    end
 
-    redirect_to @cart
+    redirect_to cart_path
   end
 
   def show; end
 
   def destroy
-    @cart.products.destroy_all
+    shopping_cart.clear
 
-    redirect_back(fallback_location: @cart)
+    redirect_to root_path
   end
 
   private
 
-  def set_cart
-    @cart ||= Cart.find(params[:id])
-  end
-
-  def cart_params
-    params.require(:cart).permit(:product_id, :products_add, products_attributes: %i[id products_number])
+  def cart_params_contract
+    result = ShoppingCart::UpdateCartContract.new.call(request.parameters.deep_symbolize_keys)
   end
 end
