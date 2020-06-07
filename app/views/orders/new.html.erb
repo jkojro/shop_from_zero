@@ -1,0 +1,10 @@
+<div class='centered_form'>
+  <%= form_with model: @order do |form| %>
+    <%= form.fields_for :addresses do |address| %>
+      <%= address.text_field :city %>
+      <%= address.text_field :street %>
+    <% end %>
+
+    <%= form.submit "Submit", class: 'black_button'  %>
+  <% end %>
+</div>
