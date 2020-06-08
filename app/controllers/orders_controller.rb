@@ -6,10 +6,15 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     @order = Order.create(user_id: current_user.id)
     Address.create(address_params)
 
     redirect_to new_order_delivery_method_path(@order.id)
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 
   private

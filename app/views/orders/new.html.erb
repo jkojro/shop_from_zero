@@ -1,5 +1,6 @@
+<h3>Podaj adres</h3>
 <div class='centered_form'>
-  <%= form_with model: @order do |form| %>
+  <%= form_with model: @order, local: true do |form| %>
     <%= form.fields_for :addresses do |address| %>
       <%= address.text_field :city %>
       <%= address.text_field :street %>
