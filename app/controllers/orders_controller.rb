@@ -7,7 +7,9 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.create(user_id: current_user.id)
-    Address.create(address_params)
+    address = Address.create(address_params)
+    @order.address
+    @order.save
 
     redirect_to new_order_orders_delivery_method_path(@order.id)
   end

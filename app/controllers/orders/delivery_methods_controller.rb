@@ -7,6 +7,9 @@ class Orders::DeliveryMethodsController < ApplicationController
   def create
     order = Order.find(params[:order_id])
     order.update(delivery_method_id: delivery_method_id)
+    order.set_delivery
+    order.save
+
 
     redirect_to new_order_orders_payment_method_path(order.id)
   end

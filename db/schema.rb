@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_07_073659) do
+ActiveRecord::Schema.define(version: 2020_06_11_054718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_06_07_073659) do
     t.integer "delivery_method_id"
     t.integer "payment_method_id"
     t.bigint "user_id", null: false
+    t.string "aasm_state"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

@@ -5,10 +5,12 @@ class Orders::PaymentMethodsController < ApplicationController
   end
 
   def create
-    @order = Order.find(params[:order_id])
-    @order.update(payment_method_id: payment_method_id)
+    order = Order.find(params[:order_id])
+    order.update(payment_method_id: payment_method_id)
+    order.pay
+    order.save
 
-    redirect_to @order
+    redirect_to order
   end
 
   private
