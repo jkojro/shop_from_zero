@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: %i[new create update show] do
-    resources :addresses, only: %i[create]
-    resource :delivery_method, only: %i[new create]
-    resource :payment_method, only: %i[new create]
-
+    namespace :orders do
+      resources :addresses, only: %i[create]
+      resource :delivery_method, only: %i[new create]
+      resource :payment_method, only: %i[new create]
+    end
   end
 
   root 'products#index'

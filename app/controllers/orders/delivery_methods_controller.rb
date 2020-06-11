@@ -1,4 +1,4 @@
-class DeliveryMethodsController < ApplicationController
+class Orders::DeliveryMethodsController < ApplicationController
 
   def new
     @order = Order.find(params[:order_id])
@@ -8,7 +8,7 @@ class DeliveryMethodsController < ApplicationController
     order = Order.find(params[:order_id])
     order.update(delivery_method_id: delivery_method_id)
 
-    redirect_to new_order_payment_method_path(order.id)
+    redirect_to new_order_orders_payment_method_path(order.id)
   end
 
   private

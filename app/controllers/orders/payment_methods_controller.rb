@@ -1,4 +1,4 @@
-class PaymentMethodsController < ApplicationController
+class Orders::PaymentMethodsController < ApplicationController
 
   def new
     @order = Order.find(params[:order_id])
