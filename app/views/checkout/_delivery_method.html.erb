@@ -1,9 +1,8 @@
-<h3>Podaj atest dres</h3>
+<h3>Delivery Method</h3>
 <div class='centered_form'>
   <%= form_with model: @order, local: true do |form| %>
-    <%= form.text_field :city %>
-    <%= form.text_field :street %>
-    <%= form.hidden_field :step, value: "Checkout::Address" %>
+    <%= form.number_field :delivery_method_id %>
+    <%= form.hidden_field :step, value: "Checkout::DeliveryMethod" %>
 
     <%= form.submit "Submit", class: 'black_button'  %>
   <% end %>

@@ -8,13 +8,7 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  resources :orders, only: %i[new create update show] do
-    namespace :orders do
-      resources :addresses, only: %i[create]
-      resource :delivery_method, only: %i[new create]
-      resource :payment_method, only: %i[new create]
-    end
-  end
+  resources :orders, only: %i[new create update show]
 
   root 'products#index'
 end

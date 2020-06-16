@@ -1,0 +1,9 @@
+<h3>Twoje zamówienie zostało złożone</h3>
+<ul>
+  <li><%= @order.id %></li>
+  <li><%= @order.address.city %></li>
+  <li><%= @order.address.street %></li>
+  <li><%= @order.delivery_method_id %></li>
+  <li><%= @order.payment_method_id %></li>
+  <li><%= @order.user_id %></li>
+</ul>

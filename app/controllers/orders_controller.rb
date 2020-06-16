@@ -1,28 +1,38 @@
 class OrdersController < ApplicationController
 
   def new
-    @order = Order.new
-    @address = Address.new(order_id: @order.id)
+    ahoy.track "My first event", language: "Ruby"
+    @order = current_user.orders.build
+
+    render 'create'
   end
 
   def create
-    @order = Order.create(user_id: current_user.id)
-    address = Address.create(address_params)
-    @order.address
-    @order.save
+    binding.pry
+    @checkout = build_checkout
+    @checkout.update_order(params[:order])
+    @checkout.next_step
+    @order = @checkout.order
 
-    redirect_to new_order_orders_delivery_method_path(@order.id)
+    render 'create'
   end
 
-  def show
-    @order = Order.find(params[:id])
+  def update
+    @checkout = Checkout.new(order: order, user_id: current_user.id, step: params[:order][:step])
+    @checkout.update_order(params[:order])
+    @checkout.next_step
+    @order = @checkout.order
+
+    render 'create'
   end
 
   private
 
-  def address_params
-    # address_params = params.require(:order).permit(adresses:[:city,  :street ])
-    # address_params.merge({ order_id: @order.id })
-    { order_id: @order.id, street: 'test street', city: 'city'}
+  def build_checkout
+    Checkout.new(order: order, user_id: current_user.id, step: params[:step])
+  end
+
+  def order
+    Order.find(params[:id]) if params[:id]
   end
 end

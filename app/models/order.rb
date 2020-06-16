@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   include AASM
 
   has_one :address
+  belongs_to :user
   belongs_to :deliverty_method, optional: true
   belongs_to :payment_method, optional: true
   accepts_nested_attributes_for :address
@@ -10,7 +11,7 @@ class Order < ApplicationRecord
     state :created, initial: true
     state :addressed, :delivery_set, :payment_set, :paid
 
-    event :address do
+    event :set_address do
       transitions from: :created, to: :addressed
     end
 
