@@ -1,8 +1,12 @@
-<h3>Podaj atest dres</h3>
+<h3>Podaj dane</h3>
 <div class='centered_form'>
   <%= form_with model: @order, local: true do |form| %>
-    <%= form.text_field :city %>
-    <%= form.text_field :street %>
+    <%= form.text_field :first_name, placeholder: 'First Name' %>
+    <%= form.text_field :last_name, placeholder: 'Last Name' %>
+    <%= form.text_field :street, placeholder: 'Street & nr' %>
+    <%= form.text_field :city, placeholder: 'City' %>
+    <%= form.text_field :postal_code, placeholder: 'Postal Code' %>
+    <%= form.number_field :phone_nr, placeholder: 'Phone Nr' %>
     <%= form.hidden_field :step, value: "Checkout::Address" %>
 
     <%= form.submit "Submit", class: 'black_button'  %>

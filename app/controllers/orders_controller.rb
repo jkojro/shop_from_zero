@@ -4,15 +4,15 @@ class OrdersController < ApplicationController
     ahoy.track "My first event", language: "Ruby"
     @order = current_user.orders.build
 
-    render 'create'
+    render 'new'
   end
 
   def create
-    binding.pry
     @checkout = build_checkout
     @checkout.update_order(params[:order])
     @checkout.next_step
     @order = @checkout.order
+    @deliverty_methods = DeliveryMethod.all
 
     render 'create'
   end
