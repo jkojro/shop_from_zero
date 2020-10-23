@@ -1,0 +1,11 @@
+<h1>Orders</h1
+
+<% @orders.each do |order| %>
+  </br>
+  <ul>
+    <li><%= "Order id: #{order.id}" %></li>
+    <li><%= "User email: #{order.user.email}" %></li>
+    <li><%= "Delivery method: #{order.delivery_method&.name}" %></li>
+    <li><%= "State: #{order.aasm_state}" %></li>
+  </ul>
+<% end %>

@@ -1,6 +1,5 @@
 <h3>Podaj delivery method</h3>
 <div class='centered_form'>
-  <%= debug @checkout %>
   <%= form_with url: orders_path, local: true do |form| %>
     <%= form.number_field :delivery_method_id %>
     <%= form.hidden_field :step, value:  @checkout.step.class %>
