@@ -1,3 +1,15 @@
+<%= search_form_for [:admin, @q] do |f| %>
+  <%= f.label :user_email %>
+  <%= f.search_field :user_email_cont %>
+
+  <%= f.label :aasm_state %>
+  <%= f.search_field :aasm_state_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+</br></br></br>
+
 <h1>Orders</h1
 
 <% @orders.each do |order| %>
@@ -7,5 +19,6 @@
     <li><%= "User email: #{order.user.email}" %></li>
     <li><%= "Delivery method: #{order.delivery_method&.name}" %></li>
     <li><%= "State: #{order.aasm_state}" %></li>
+    <li><%= "Total: #{order.total_sum}" %></li>
   </ul>
 <% end %>

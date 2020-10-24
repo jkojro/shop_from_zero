@@ -28,4 +28,8 @@ class ShoppingCart
       ShoppingCart::Entities::CartItem.new(product_id: product_id, quantity: quantity)
     end
   end
+
+  def total_sum
+    items.sum { |item| item.quantity * item.product.price }
+  end
 end

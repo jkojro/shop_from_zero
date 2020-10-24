@@ -1,7 +1,8 @@
-class Admin
+module Admin
   class OrdersController < BaseAdminController
     def index
-      @orders = Order.all
+      @q = Order.ransack(params[:q])
+      @orders = @q.result.includes(:user, :delivery_method)
     end
   end
 end

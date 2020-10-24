@@ -20,6 +20,7 @@
           <div class='price col-3'><%= "Cena łącznie: #{item.quantity * item.product.price} zł"%></div>
         </div>
       <% end %>
+      <h2><%= "Total: #{shopping_cart.total_sum}"%></h2>
     </div>
   </div>
 <% end %>
