@@ -2,8 +2,8 @@
   <%= f.label :user_email %>
   <%= f.search_field :user_email_cont %>
 
-  <%= f.label :aasm_state %>
-  <%= f.search_field :aasm_state_cont %>
+  <%= f.label :state %>
+  <%= f.search_field :state_cont %>
 
   <%= f.submit %>
 <% end %>
@@ -18,7 +18,7 @@
     <li><%= "Order id: #{order.id}" %></li>
     <li><%= "User email: #{order.user.email}" %></li>
     <li><%= "Delivery method: #{order.delivery_method&.name}" %></li>
-    <li><%= "State: #{order.aasm_state}" %></li>
+    <li><%= "State: #{order.state}" %></li>
     <li><%= "Total: #{order.total_sum}" %></li>
   </ul>
 <% end %>

@@ -24,6 +24,8 @@ class OrdersController < ApplicationController
     @checkout.next_step
     @order = @checkout.order
 
+    shopping_cart.clear if @checkout.step == Checkout::Summary
+
     render 'create'
   end
 
