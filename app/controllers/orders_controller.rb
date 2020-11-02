@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     ahoy.track "My first event", language: "Ruby"
@@ -9,7 +10,7 @@ class OrdersController < ApplicationController
 
   def create
     @checkout = build_checkout
-    @checkout.update_order(params[:order])
+    @checkout.update_order(order_params)
     @checkout.next_step
     @order = @checkout.order
     @deliverty_methods = DeliveryMethod.all
@@ -23,6 +24,8 @@ class OrdersController < ApplicationController
     @checkout.next_step
     @order = @checkout.order
 
+    shopping_cart.clear if @checkout.step == Checkout::Summary
+
     render 'create'
   end
 
@@ -34,5 +37,9 @@ class OrdersController < ApplicationController
 
   def order
     Order.find(params[:id]) if params[:id]
+  end
+
+  def order_params
+    params[:order].merge({ shopping_cart: shopping_cart })
   end
 end
