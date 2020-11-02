@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2020_10_25_173731) do
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "addresses", force: :cascade do |t|
     t.bigint "order_id", null: false
