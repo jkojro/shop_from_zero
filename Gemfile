@@ -5,6 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+gem 'aasm', '~> 5.0', '>= 5.0.8'
+gem 'ahoy_matey'
+gem 'attributed_object'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'dry-monads', '~> 1.3', '>= 1.3.5'
@@ -15,6 +18,7 @@ gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
+gem 'ransack'
 
 group :development, :test do
   gem 'factory_bot_rails'

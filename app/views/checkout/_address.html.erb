@@ -1,0 +1,10 @@
+<h3>Podaj adres</h3>
+<div class='centered_form'>
+  <%= form_with model: @order, local: true do |form| %>
+    <%= form.text_field :city %>
+    <%= form.text_field :street %>
+    <%= form.hidden_field :step, value: "Checkout::Address" %>
+
+    <%= form.submit "Submit", class: 'black_button'  %>
+  <% end %>
+</div>

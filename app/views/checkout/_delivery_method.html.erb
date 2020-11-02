@@ -1,0 +1,12 @@
+<h3>Delivery Method</h3>
+<div class='centered_form'>
+  <%= form_with model: @order, local: true do |form| %>
+    <%= form.hidden_field :step, value: "Checkout::DeliveryMethod" %>
+    <% @deliverty_methods.each do |method| %>
+      <%= form.label :delivery_method, method.name %>
+      <%= form.radio_button :delivery_method, method.id %><br />
+    <% end %>
+
+    <%= form.submit "Submit", class: 'black_button'  %>
+  <% end %>
+</div>

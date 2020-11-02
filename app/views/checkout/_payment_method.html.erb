@@ -1,0 +1,9 @@
+<h3>Payment Method</h3>
+<div class='centered_form'>
+  <%= form_with model: @order, local: true do |form| %>
+    <%= form.number_field :payment_method_id %>
+    <%= form.hidden_field :step, value: "Checkout::PaymentMethod" %>
+
+    <%= form.submit "Submit", class: 'black_button'  %>
+  <% end %>
+</div>

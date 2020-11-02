@@ -1,0 +1,26 @@
+<h3>Twoje zamówienie zostało złożone</h3>
+<ul>
+  <li>Order id: <%= @order.id %></li>
+  <li>Address: <%= @order.address.city %></li>
+  <li><%= @order.address.street %></li>
+  <li>Delivery Method: <%= @order.delivery_method_id %></li>
+  <li>Payment method: <%= @order.payment_method_id %></li>
+  <li>User id: <%= @order.user_id %></li>
+</ul>
+
+<h2>Zamówienie</h2>
+<% if shopping_cart.items.any?  %>
+  <div class='row'>
+    <div class='product-box col-12'>
+      <% shopping_cart.items.each do |item| %>
+        <div class='row'>
+          <div class='name col-3'><%= item.product.name %></div>
+          <div class='price col-2' ><%="#{item.product.price} zł"%></div>
+          <div class='col-1'><%= "Sztuk: #{item.quantity}" %></div>
+          <div class='price col-3'><%= "Cena łącznie: #{item.quantity * item.product.price} zł"%></div>
+        </div>
+      <% end %>
+      <h2><%= "Total: #{shopping_cart.total_sum}"%></h2>
+    </div>
+  </div>
+<% end %>

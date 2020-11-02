@@ -18,6 +18,8 @@
   </div>
 
   <%= link_to 'Wyczyść koszyk', cart_path, method: :delete, data: {confirm: "Czy na pewno chcesz wyczyścić koszyk?"} %>
+
+  <%= link_to 'checkout', new_order_path %>
 <% end %>
 
 <%= link_to 'Powrót', root_path %>
